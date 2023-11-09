@@ -1,0 +1,84 @@
+######################################
+#### Programming portfolio week 7 ####
+######################################
+
+#### challenge 1 ####
+
+def sortlist(input):
+    inputlist = list(set(input.strip("")))
+    inputlist.sort()
+    return inputlist
+
+if __name__ == "__main__":
+    print(sortlist(input("Please enter a string: ")))
+
+#####################
+
+#### Challenge 2 ####
+
+def Atleastone(input1 , input2):
+    return input1.union(input2)
+
+def Bothwords(input1 , input2):
+    return input1.intersection(input2)
+
+def EitherButNotBoth(input1 , input2):
+    return input1.symmetric_difference(input2)
+
+if __name__ == "__main__":
+    FirstInput = input("Please enter the first string: ")
+    SecondInput = input("Please enter the second string: ")
+    print(Atleastone(input1=set(FirstInput.strip("")) , input2=set(SecondInput.strip(""))))
+    print(Bothwords(input1=set(FirstInput.strip("")) , input2=set(SecondInput.strip(""))))
+    print(EitherButNotBoth(input1=set(FirstInput.strip("")) , input2=set(SecondInput.strip(""))))
+
+#####################
+
+#### Challenge 3 ####
+
+CountriesCapitals = dict({"united kingdom" : "london"})
+
+def CountrySearch(Country):
+    if Country in CountriesCapitals:
+        print(CountriesCapitals[Country])
+    else:
+        Capital = input("please enter the capital of this city so it can be added to the database: ")
+        CountriesCapitals[Country] = Capital.lower()
+        print(f"the following information has been added, {Country} : {Capital.lower()}")
+
+if __name__ == "__main__":
+    UserTermination = False
+    print("enter a blank line to exit")
+    while UserTermination == False:
+        Country = input("Please enter a country: ")
+        if Country == "":
+            UserTermination = True
+            exit()
+        CountrySearch(Country.lower())
+
+#####################
+
+#### Challenge 4 ####
+
+FrequencyDict = dict()
+def FrequencyAnalysis(input):
+    for element in input:
+        if element in FrequencyDict and element != " ":
+            FrequencyDict[element.lower()] += 1
+        elif element != " ":
+            FrequencyDict[element.lower()] = 1
+    return sorted(FrequencyDict.items(), key= lambda x: x[1], reverse=True)
+
+
+
+if __name__ == "__main__":
+    input = input("Please enter a string for frequency analysis: ")
+    Frequencies = (FrequencyAnalysis(input))
+    print("the six most common characters are: ")
+    for MostCommon in range(0,6):
+        Result = str(Frequencies[MostCommon])
+        Result =  Result.strip("()")
+        Result = Result.replace("'", "")
+        Result = Result.replace("," , " :")
+        print(Result)
+#####################
